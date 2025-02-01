@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayrak Bilmece</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="images/world-map-sketch.svg" as="image">
+</head>
+<body>
+    <div class="container">
+        <!-- Ana Menü -->
+        <div id="main-menu" class="menu-screen">
+            <h1>Bayrak Bilmece</h1>
+            <div class="menu-buttons">
+                <button class="menu-button" onclick="startGame()">Oyunu Başlat</button>
+                <button class="menu-button" onclick="showHighScores()">Yüksek Skorlar</button>
+                <button class="menu-button" onclick="showInstructions()">Nasıl Oynanır?</button>
+            </div>
+        </div>
+
+        <!-- Oyun Ekranı -->
+        <div id="game-screen" class="game-screen hidden">
+            <h1>Bayrak Bilmece</h1>
+            <div class="game-area">
+                <div class="flag-container">
+                    <img id="flag-image" src="" alt="Ülke Bayrağı">
+                </div>
+                <div class="notification" id="notification"></div>
+                <div class="options-container">
+                    <button class="option"></button>
+                    <button class="option"></button>
+                    <button class="option"></button>
+                    <button class="option"></button>
+                </div>
+            </div>
+            <div class="score-container">
+                Skor: <span id="score">0</span>
+            </div>
+            <button class="menu-button back-button" onclick="showMainMenu()">Ana Menüye Dön</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
