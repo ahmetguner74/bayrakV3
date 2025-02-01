@@ -28,7 +28,7 @@ body::before {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    opacity: 0.1;
+    opacity: 0.05;
     z-index: -1;
     filter: invert(1);
 }
@@ -61,9 +61,10 @@ h1 {
 
 .options-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    width: 100%;
 }
 
 .option {
@@ -74,12 +75,19 @@ h1 {
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    word-break: break-word;
 }
 
 .option:hover {
     background-color: #45a049;
-    transform: scale(1.02);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .option:disabled {
@@ -177,4 +185,344 @@ h1 {
 .game-screen.hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: visible;
+}
+
+.popup.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popup-content {
+    background: #2a2f35;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.difficulty-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.difficulty-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.difficulty-btn.easy {
+    background-color: #4CAF50;
+}
+
+.difficulty-btn.medium {
+    background-color: #FFA500;
+}
+
+.difficulty-btn.hard {
+    background-color: #f44336;
+}
+
+.difficulty-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.start-game-btn {
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    background-color: #2196F3;
+    width: 100%;
+}
+
+.start-game-btn:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.difficulty-btn.selected {
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #353b43;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background-color: #2196F3;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.continent-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.continent-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    background-color: #607D8B;
+}
+
+.continent-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.continent-btn.selected {
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    background-color: #455A64;
+}
+
+.game-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(42, 47, 53, 0.9);
+    padding: 1rem;
+    backdrop-filter: blur(5px);
+    z-index: 100;
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.info-item i {
+    font-size: 1.4rem;
+}
+
+#timer.warning {
+    color: #ff9800;
+    animation: pulse 1s infinite;
+}
+
+#timer.danger {
+    color: #f44336;
+    animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.game-area {
+    margin-top: 80px; /* Header'a yer açmak için */
+}
+
+.score-summary {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.final-score {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.score-message {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.end-game-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.end-game-buttons .menu-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.setting-label {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Toggle Switch Stili */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Zorluk ve Süre Seçenekleri */
+.difficulty-select, .time-select {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.difficulty-option, .time-option {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #353b43;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.difficulty-option:hover, .time-option:hover {
+    background-color: #4a4f57;
+}
+
+.difficulty-option.selected, .time-option.selected {
+    background-color: #4CAF50;
+}
+
+/* Zorluk Seviyeleri için Renkler */
+.difficulty-option[data-difficulty="easy"].selected {
+    background-color: #4CAF50;
+}
+
+.difficulty-option[data-difficulty="medium"].selected {
+    background-color: #FFA500;
+}
+
+.difficulty-option[data-difficulty="hard"].selected {
+    background-color: #f44336;
+}
+
+.country-count {
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-left: 0.5rem;
 } 

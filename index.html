@@ -21,23 +21,123 @@
 
         <!-- Oyun Ekranı -->
         <div id="game-screen" class="game-screen hidden">
+            <div class="game-header">
+                <div class="game-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="timer">15</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span id="score">0</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span id="question-counter">1/10</span>
+                    </div>
+                </div>
+            </div>
             <h1>Bayrak Bilmece</h1>
             <div class="game-area">
                 <div class="flag-container">
                     <img id="flag-image" src="" alt="Ülke Bayrağı">
                 </div>
                 <div class="notification" id="notification"></div>
-                <div class="options-container">
-                    <button class="option"></button>
-                    <button class="option"></button>
-                    <button class="option"></button>
-                    <button class="option"></button>
+                <div id="options-container" class="options-container">
+                    <!-- Seçenekler dinamik olarak eklenecek -->
                 </div>
             </div>
             <div class="score-container">
                 Skor: <span id="score">0</span>
             </div>
             <button class="menu-button back-button" onclick="showMainMenu()">Ana Menüye Dön</button>
+        </div>
+
+        <!-- Kıta Seçim Popup -->
+        <div id="difficulty-popup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Kıta Seçin</h2>
+                <div class="continent-buttons">
+                    <button onclick="selectContinent('all')" class="continent-btn">
+                        Tüm Dünya <span class="country-count">(255)</span>
+                    </button>
+                    <button onclick="selectContinent('europe')" class="continent-btn">
+                        Avrupa <span class="country-count">(44)</span>
+                    </button>
+                    <button onclick="selectContinent('asia')" class="continent-btn">
+                        Asya <span class="country-count">(45)</span>
+                    </button>
+                    <button onclick="selectContinent('africa')" class="continent-btn">
+                        Afrika <span class="country-count">(54)</span>
+                    </button>
+                    <button onclick="selectContinent('americas')" class="continent-btn">
+                        Amerika <span class="country-count">(35)</span>
+                    </button>
+                    <button onclick="selectContinent('oceania')" class="continent-btn">
+                        Okyanusya <span class="country-count">(14)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Oyun Sonu Popup -->
+        <div id="game-end-popup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Oyun Bitti!</h2>
+                <div class="score-summary">
+                    <div class="final-score">
+                        <span id="final-score">0</span>/<span id="total-questions">10</span>
+                    </div>
+                    <div class="score-message" id="score-message"></div>
+                </div>
+                <div class="end-game-buttons">
+                    <button onclick="restartGame()" class="menu-button">Tekrar Oyna</button>
+                    <button onclick="showMainMenu()" class="menu-button">Ana Menü</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ayarlar Popup -->
+        <div id="settings-popup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Ayarlar</h2>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <span class="setting-label">Ses Efektleri</span>
+                        <label class="switch">
+                            <input type="checkbox" id="sound-toggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <span class="setting-label">Müzik</span>
+                        <label class="switch">
+                            <input type="checkbox" id="music-toggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <span class="setting-label">Zorluk Seviyesi</span>
+                        <div class="difficulty-select">
+                            <button class="difficulty-option selected" data-difficulty="easy">Kolay</button>
+                            <button class="difficulty-option" data-difficulty="medium">Orta</button>
+                            <button class="difficulty-option" data-difficulty="hard">Zor</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <span class="setting-label">Soru Süresi</span>
+                        <div class="time-select">
+                            <button class="time-option" data-time="10">10s</button>
+                            <button class="time-option selected" data-time="15">15s</button>
+                            <button class="time-option" data-time="20">20s</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="menu-button" onclick="closeSettings()">Kapat</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
